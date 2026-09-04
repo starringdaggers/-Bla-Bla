@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -71,3 +71,66 @@
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .btn:active { transform: scale(0.98); }
+
+  .footer { text-align: center; font-size: 12px; color: #777; margin-top: 16px; }
+  .error { color: #e63946; font-size: 13px; margin-top: 8px; display: none; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <h1>GreenOrange Wallet</h1>
+      <p>Send money. Pay bills. Stay bright.</p>
+    </div>
+
+    <div id="loginForm">
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="0801 234 5678" maxlength="11">
+      </div>
+      <div class="form-group">
+        <label>4-Digit PIN</label>
+        <input type="password" id="pin" placeholder="****" maxlength="4">
+      </div>
+      <button class="btn" onclick="handleLogin()">Login</button>
+      <p id="error" class="error">Please enter a valid phone and 4-digit PIN</p>
+      <p class="footer">Demo only. No real data is sent.</p>
+    </div>
+
+    <div id="welcomeScreen" class="welcome">
+      <h2>Welcome back!</h2>
+      <p id="welcomeText"></p>
+      <button class="btn" style="margin-top:20px; background:#ccc; color:#333;" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+<script>
+  function handleLogin() {
+    const phone = document.getElementById('phone').value.trim();
+    const pin = document.getElementById('pin').value.trim();
+    const error = document.getElementById('error');
+
+    // Simple validation like Opay: 11 digits phone, 4 digit pin
+    if(phone.length >= 10 && pin.length === 4 && !isNaN(pin)) {
+      error.style.display = 'none';
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('welcomeScreen').style.display = 'block';
+      document.getElementById('welcomeText').innerText = 
+        `Hi there! You logged in with ${phone}. Your GreenOrange balance is ₦12,450.00`;
+    } else {
+      error.style.display = 'block';
+    }
+  }
+
+  function logout() {
+    document.getElementById('loginForm').style.display = 'block';
+    document.getElementById('welcomeScreen').style.display = 'none';
+    document.getElementById('phone').value = '';
+    document.getElementById('pin').value = '';
+  }
+</script>
+</body>
+</html>
