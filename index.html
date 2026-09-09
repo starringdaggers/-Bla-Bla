@@ -60,13 +60,24 @@ body {
          <button type="submit">login</button>
          </form>
          <div class="link">
-            <a href="#">forgot password</a> i <a href="#">sign up</a>
+            <a href="#">forgot password</a> option, click on forget password <a href="#">sign up</a>
          </div>
       </div> 
 
       <script>
       document.getElementByid('loginform').addEventListener('submit',async (e) => {
          e.preventDefault();
-      }  
+         const phone = document.getElementByid('phone').value;
+         const password = document.getElementByid('password').value;
+
+         // const res = await fetch('/api/login', {
+         // menthod: 'post',
+         //headers: {'content-type': 'application/json'},
+         // body: JSON.stringyfy({ phone, password})
+         // });
+
+         alert('logging in with ${phone}');
+      });  
       </script>
-   </body>
+ </body>
+</html>
