@@ -59,5 +59,14 @@ body {
          <input type="password" id="password" placeholder="Enter password"required>
          <button type="submit">login</button>
          </form>
-      </div>  
+         <div class="link">
+            <a href="#">forgot password</a> i <a href="#">sign up</a>
+         </div>
+      </div> 
+
+      <script>
+      document.getElementByid('loginform').addEventListener('submit',async (e) => {
+         e.preventDefault();
+      }  
+      </script>
    </body>
