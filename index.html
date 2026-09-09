@@ -69,7 +69,38 @@ body {
          e.preventDefault();
          const phone = document.getElementByid('phone').value;
          const password = document.getElementByid('password').value;
+const express = require('express');
+const cors = require('cors');
+const app = express();
+app.use(express.json());
+app.use(cors());
 
+// FAKE DATABASE - replace with real DB later
+const users = [
+  {phone: "08012345678", password: "1234", balance: 5000},
+  {phone: "09098765432", password: "abcd", balance: 12000}
+];
+
+// LOGIN ENDPOINT
+app.post('/api/login', (req, res) => {
+  const {phone, password} = req.body;
+  const user = users.find(u => u.phone === phone && u.password === password);
+  
+  if(user) {
+    res.json({success: true, message: "Login successful", balance: user.balance});
+  } else {
+    res.json({success: false, message: "Invalid phone or password"});
+  }
+});
+
+// GET BALANCE ENDPOINT
+app.get('/api/balance/:phone', (req, res) => {
+  const user = users.find(u => u.phone === req.params.phone);
+  if(user) res.json({balance: user.balance});
+  else res.status(404).json({message: "User not found"});
+});
+
+app.listen(3000, () => console.log("Demo bank backend running on http://localhost:3000"));
          // const res = await fetch('/api/login', {
          // menthod: 'post',
          //headers: {'content-type': 'application/json'},
