@@ -1,115 +1,379 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta name="viewport"content="width=device-width,initial-scale=1.0">
-      <title>opay login</title>
-      <style>
-body {
-   font-family: Arial,sans-serif;
-   backgroung: #f7f7f7;
-   display :flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
-   margin: 0;
-}
- .login-box {
- backdround: black;
-    paddding:30px 25px
-    border-radius: 16px;
-    width: 90%
-    max-width =: 350px;
-    box -shadow: 0 4px 12px rgba(0,0,0,0,1);
- } 
- .logo {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    colour: #00a859;/* presido green */
-    margin-bottom:20px;
-    }
-    input {
-       width: 100%;
-       padding: 14px;
-       margin: 10px 0;
-       border: 1px solid #ddd;
-       border-radius: 10px;
-       font-size: 16px;
-    }     
-     button {
-        width: 100%;
-        padding: 14px;
-        background: #00a859;
-        color: white;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight:bold;
-        cursor; pointer;
-         }
-         button:hover{ background: #008f47; }
-         .link { text-align: center; margin-top: 15px font-size: 14px;}
-         .link a { color: #00a859; text-decoration: none; }
-      </style>
-   </head>
-   <body>
-      <div class="login-box">
-        <div class="logo">presido bank</div>
-         <form id =""loginform>
-         <input type="tel" id="phone" placeholder="Enter phone number" required>
-         <input type="password" id="password" placeholder="Enter password"required>
-         <button type="submit">login</button>
-         </form>
-         <div class="link">
-            <a href="#">forgot password</a> option, click on forget password <a href="#">sign up</a>
-         </div>
-      </div> 
-
-      <script>
-      document.getElementByid('loginform').addEventListener('submit',async (e) => {
-         e.preventDefault();
-         const phone = document.getElementByid('phone').value;
-         const password = document.getElementByid('password').value;
-const express = require('express');
-const cors = require('cors');
-const app = express();
-app.use(express.json());
-app.use(cors());
-
-// FAKE DATABASE - replace with real DB later
-const users = [
-  {phone: "08012345678", password: "1234", balance: 5000},
-  {phone: "09098765432", password: "abcd", balance: 12000}
-];
-
-// LOGIN ENDPOINT
-app.post('/api/login', (req, res) => {
-  const {phone, password} = req.body;
-  const user = users.find(u => u.phone === phone && u.password === password);
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dupssy Culture Beauty Salon & Boutique</title>
   
-  if(user) {
-    res.json({success: true, message: "Login successful", balance: user.balance});
-  } else {
-    res.json({success: false, message: "Invalid phone or password"});
-  }
-});
+  <!-- Importing Elegant Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-// GET BALANCE ENDPOINT
-app.get('/api/balance/:phone', (req, res) => {
-  const user = users.find(u => u.phone === req.params.phone);
-  if(user) res.json({balance: user.balance});
-  else res.status(404).json({message: "User not found"});
-});
+  <style>
+    :root {
+      --primary-blue: #0A192F; /* Deep Elegant Navy */
+      --accent-blue: #173A6B; 
+      --cream-bg: #FAF9F6; /* Soft Cream */
+      --cream-card: #FFFFFF;
+      --gold-accent: #C5A059; /* Gold for beauty salon elegance */
+      --text-dark: #333333;
+      --whatsapp-green: #25D366;
+    }
 
-app.listen(3000, () => console.log("Demo bank backend running on http://localhost:3000"));
-         // const res = await fetch('/api/login', {
-         // menthod: 'post',
-         //headers: {'content-type': 'application/json'},
-         // body: JSON.stringyfy({ phone, password})
-         // });
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-         alert('logging in with ${phone}');
-         console.log(phone, password);
-      });  
-      </script>
- </body>
+    body {
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--primary-blue);
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      color: var(--cream-bg);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--gold-accent);
+      font-style: italic;
+    }
+
+    .nav-links a {
+      color: var(--cream-bg);
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 400;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-accent);
+    }
+
+    /* Hero Section with Background Image */
+    .hero {
+      background-image: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 120px 5%;
+      text-align: center;
+      color: var(--cream-bg);
+      border-bottom: 4px solid var(--gold-accent);
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      margin-bottom: 20px;
+      color: var(--cream-bg);
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 650px;
+      margin: 0 auto 35px;
+      font-weight: 300;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 35px;
+      background-color: var(--gold-accent);
+      color: var(--primary-blue);
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--cream-bg);
+      transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .about {
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .about h2 {
+      color: var(--primary-blue);
+      font-size: 36px;
+      margin-bottom: 25px;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 17px;
+      color: #555;
+    }
+
+    /* Products Section */
+    .products {
+      padding: 60px 5%;
+      background-color: #F4F1EA; /* Slightly darker cream for contrast */
+    }
+
+    .products h2 {
+      text-align: center;
+      color: var(--primary-blue);
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .card {
+      background-color: var(--cream-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .card h3 {
+      color: var(--primary-blue);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .card-btn {
+      background-color: transparent;
+      color: var(--primary-blue);
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 500;
+      border: 1px solid var(--primary-blue);
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+
+    .card-btn:hover {
+      background-color: var(--primary-blue);
+      color: var(--cream-bg);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--primary-blue);
+      color: var(--cream-bg);
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: var(--gold-accent);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background-color: var(--cream-bg);
+      color: var(--primary-blue);
+      padding: 18px 35px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s;
+    }
+
+    .contact-card:hover {
+      transform: scale(1.05);
+    }
+
+    .whatsapp-btn {
+      background-color: var(--whatsapp-green);
+      color: white;
+      border: none;
+    }
+
+    /* Floating WhatsApp Button */
+    .floating-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s;
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 40px; }
+      .nav-links { display: none; }
+      .contact-links { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Dupssy <span>Culture</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#market">The Market</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Beauty & Lifestyle, Redefined.</h1>
+    <p>Welcome to Dupssy Culture Beauty Salon. Your premier destination for luxury hair, exclusive fashion accessories, and custom birthday frames.</p>
+    <a href="#market" class="btn">Explore Our Market</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>The Dupssy Culture Experience</h2>
+    <p>At Dupssy Culture, we believe in making every client look and feel their absolute best. From professional salon services and premium wigs to curated collections of shoes and designer bags, we bring elegance directly to you. Celebrating a milestone? Ask about our stunning, customized birthday frames.</p>
+  </section>
+
+  <!-- Market / Products Section -->
+  <section id="market" class="products">
+    <h2>Shop The Market</h2>
+    <div class="grid">
+      
+      <!-- Card 1: Hair & Wigs -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" alt="Beautiful Hair and Wigs">
+        <div class="card-content">
+          <h3>Salon, Hair & Wigs</h3>
+          <p>Flawless installations, premium virgin hair, frontals, and custom wigs tailored to your style.</p>
+          <a href="https://wa.me/2348086038700?text=Hello%20Dupssy%20Culture,%20I%20am%20interested%20in%20your%20Hair%20and%20Wigs." class="card-btn">Shop on WhatsApp</a>
+        </div>
+      </div>
+      
+      <!-- Card 2: Shoes & Bags -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=800&q=80" alt="Luxury Bags and Shoes">
+        <div class="card-content">
+          <h3>Shoes & Bags</h3>
+          <p>Complete your look with our trendy collection of designer bags, luxury heels, and elegant footwear.</p>
+          <a href="https://wa.me/2349166289917?text=Hello%20Dupssy%20Culture,%20I%20want%20to%20shop%20Shoes%20and%20Bags." class="card-btn">Shop on WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Birthday Frames -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80" alt="Birthday Frame">
+        <div class="card-content">
+          <h3>Birthday Frames</h3>
+          <p>Immortalize your special day with our beautifully crafted, high-quality custom birthday frames.</p>
+          <a href="https://wa.me/2348086038700?text=Hello%20Dupssy%20Culture,%20I%20would%20like%20to%20order%20a%20Birthday%20Frame." class="card-btn">Order Frame</a>
+        </div>
+      </div>
+
+      <!-- Card 4: General Merchandise -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80" alt="Boutique Shopping">
+        <div class="card-content">
+          <h3>All Kinds of Things</h3>
+          <p>We source and sell a wide variety of premium merchandise. If you need it, we can get it for you.</p>
+          <a href="https://wa.me/2349166289917?text=Hello%20Dupssy%20Culture,%20I%20have%20an%20inquiry%20about%20a%20product." class="card-btn">Make Inquiry</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Book an Appointment or Order Now</h2>
+    <p style="color: var(--cream-bg); font-weight: 300;">Our lines are open for salon bookings, inquiries, and delivery orders.</p>
+    
+    <div class="contact-links">
+      <a href="tel:08086038700" class="contact-card">📞 0808 603 8700</a>
+      <a href="tel:09166289917" class="contact-card">📞 0916 628 9917</a>
+      <a href="https://wa.me/2348086038700" class="contact-card whatsapp-btn" target="_blank">💬 WhatsApp Line 1</a>
+      <a href="https://wa.me/2349166289917" class="contact-card whatsapp-btn" target="_blank">💬 WhatsApp Line 2</a>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/2348086038700?text=Hello%20Dupssy%20Culture!%20I%20would%20like%20to%20make%20a%20purchase." class="floating-wa" target="_blank">
+    <span>💬 Chat with Us</span>
+  </a>
+
+</body>
 </html>
